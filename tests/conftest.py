@@ -8,7 +8,7 @@ from ape import Contract, project
 # You may need to add the token address to `tokens` fixture.
 @pytest.fixture(scope="session")
 def asset(tokens):
-    yield Contract(tokens["dai"])
+    yield project.IERC20Interface.at(tokens["usdc"])
 
 
 # Adjust the amount that should be used for testing based on `asset`.
@@ -25,7 +25,7 @@ def amount(asset, user, whale):
 
 @pytest.fixture(scope="session")
 def daddy(accounts):
-    yield accounts["0xFEB4acf3df3cDEA7399794D0869ef76A6EfAff52"]
+    yield accounts["0xf89d7b9c864f589bbF53a82105107622B35EaA40"]
 
 
 @pytest.fixture(scope="session")
@@ -51,9 +51,9 @@ def keeper(accounts):
 @pytest.fixture(scope="session")
 def tokens():
     tokens = {
-        "weth": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
-        "dai": "0x6B175474E89094C44Da98b954EedeAC495271d0F",
-        "usdc": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+        "weth": "0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619",
+        "dai": "0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063",
+        "usdc": "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
     }
     yield tokens
 
@@ -63,12 +63,12 @@ def whale(accounts):
     # In order to get some funds for the token you are about to use,
     # The Balancer vault stays steady ballin on almost all tokens
     # NOTE: If `asset` is a balancer pool this may cause issues on amount checks.
-    yield accounts["0xBA12222222228d8Ba445958a75a0704d566BF2C8"]
+    yield accounts["0xf89d7b9c864f589bbF53a82105107622B35EaA40"]
 
 
 @pytest.fixture(scope="session")
 def weth(tokens):
-    yield Contract(tokens["weth"])
+    yield project.IERC20Interface.at(tokens["weth"])
 
 
 @pytest.fixture(scope="session")

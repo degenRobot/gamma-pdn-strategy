@@ -6,8 +6,9 @@ plugins:
   - name: hardhat
   - name: infura
   - name: alchemy
+  - name: polygon
 
-default_ecosystem: ethereum
+default_ecosystem: polygon
 
 dependencies:
   - name: openzeppelin
@@ -32,13 +33,18 @@ solidity:
     - "@tokenized-strategy=tokenized-strategy/v3.0.1"
     - "@periphery=periphery/master"
 
-ethereum:
+# ethereum:
+#   default_network: mainnet-fork
+#   mainnet_fork:
+#     default_provider: hardhat
+
+polygon:
   default_network: mainnet-fork
   mainnet_fork:
     default_provider: hardhat
 
 hardhat:
   fork:
-    ethereum:
+    polygon:
       mainnet:
-        upstream_provider: infura
+        upstream_provider: alchemy
